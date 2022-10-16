@@ -48,14 +48,16 @@ result_os = os.popen(' && '.join(bash_command)).read()
 for result in result_os.split('\n'):
     if result.find('modified') != -1:
         prepare_result = directory_os+'/'+result.replace('\tmodified:   ', '')
-        print(f'Изменился файл{prepare_result}')
+        print(f'Изменился файл {prepare_result}')
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
 debian@debian:~$ /bin/python3 /home/debian/1.py
 Отслеживаемая директория /home/debian/netology/sysadm-homeworks
-Изменился файл/home/debian/netology/sysadm-homeworks/README.md
+Изменился файл /home/debian/netology/sysadm-homeworks/test1.txt
+Изменился файл /home/debian/netology/sysadm-homeworks/test2.txt
+Изменился файл /home/debian/netology/sysadm-homeworks/test3.txt
 ```
 
 ## Обязательная задача 3
