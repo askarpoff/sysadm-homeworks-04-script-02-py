@@ -37,12 +37,25 @@ for result in result_os.split('\n'):
 
 ### Ваш скрипт:
 ```python
-???
+#!/usr/bin/env python3
+
+import os
+bash_command = ["cd ~/netology/sysadm-homeworks","pwd"]
+directory_os = os.popen(' && '.join(bash_command)).read().replace("\n","")
+print(f'Отслеживаемая директория {directory_os}')
+bash_command = ["cd ~/netology/sysadm-homeworks","git status"]
+result_os = os.popen(' && '.join(bash_command)).read()
+for result in result_os.split('\n'):
+    if result.find('modified') != -1:
+        prepare_result = directory_os+'/'+result.replace('\tmodified:   ', '')
+        print(f'Изменился файл{prepare_result}')
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-???
+debian@debian:~$ /bin/python3 /home/debian/1.py
+Отслеживаемая директория /home/debian/netology/sysadm-homeworks
+Изменился файл/home/debian/netology/sysadm-homeworks/README.md
 ```
 
 ## Обязательная задача 3
