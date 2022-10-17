@@ -114,10 +114,26 @@ debian@debian:~/netology/sysadm-homeworks$ /bin/python3 /home/debian/2.py /home/
 
 ### Ваш скрипт:
 ```python
-???
+#!/usr/bin/env python3
+
+import socket
+import time
+
+hosts={'drive.google.com':'74.125.205.194', 'mail.google.com':'108.177.14.18', 'google.com':'74.125.205.113'}
+while(True):
+    for hostname in hosts.keys():
+        host_ip=socket.gethostbyname(hostname)
+        print(hostname,host_ip)
+        if (host_ip==hosts[hostname]):
+            print (f'IP не изменился: {hostname} {host_ip}')
+        else:
+            print('\x1b[1;31;40m' + 'Внимание!' + '\x1b[0m')
+            print (f'IP изменился: {hostname} был {hosts[hostname]} - стал {host_ip}')
+            hosts[hostname]=host_ip
+    time.sleep(5)
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-???
+![image](https://user-images.githubusercontent.com/108946489/196245771-d5107cb2-1889-41a3-a081-f69bb66b4fe8.png)
 ```
