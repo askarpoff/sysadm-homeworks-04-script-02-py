@@ -65,12 +65,54 @@ debian@debian:~$ /bin/python3 /home/debian/1.py
 
 ### Ваш скрипт:
 ```python
-???
+#!/usr/bin/env python3
+
+import os
+import sys
+if len(sys.argv)<2:
+    print('Не указан каталог');
+    sys.exit(0);
+bash_command = ["cd "+sys.argv[1],"pwd"]
+directory_os = os.popen(' && '.join(bash_command)).read().replace("\n","")
+if "cd: can't cd to" in directory_os:
+    print(f'Нет такого каталога: {sys.argv[1]}');
+    sys.exit(0);
+
+print(f'Отслеживаемая директория {directory_os}')
+
+bash_command = ["cd "+sys.argv[1],"git status"]
+result_os = os.popen(' && '.join(bash_command)).read()
+if len(result_os)==0:
+    print(f'Это не репозиторий: {sys.argv[1]}');
+    sys.exit(0);
+
+for result in result_os.split('\n'):
+    if result.find('modified') != -1:
+        prepare_result = directory_os+'/'+result.replace('\tmodified:   ', '')
+        print(f'Изменился файл {prepare_result}')
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-???
+debian@debian:~/netology/sysadm-homeworks$ /bin/python3 /home/debian/2.py /home/debian/netology/
+Отслеживаемая директория /home/debian/netology
+fatal: not a git repository (or any of the parent directories): .git
+Это не репозиторий": /home/debian/netology/
+debian@debian:~/netology/sysadm-homeworks$ /bin/python3 /home/debian/2.py /home/debian/netology/
+Отслеживаемая директория /home/debian/netology
+fatal: not a git repository (or any of the parent directories): .git
+Это не репозиторий: /home/debian/netology/
+debian@debian:~/netology/sysadm-homeworks$ /bin/python3 /home/debian/2.py ./netology/sysadm-homeworks
+/bin/sh: 1: cd: can't cd to ./netology/sysadm-homeworks
+Отслеживаемая директория
+/bin/sh: 1: cd: can't cd to ./netology/sysadm-homeworks
+Это не репозиторий: ./netology/sysadm-homeworks
+debian@debian:~/netology/sysadm-homeworks$ /bin/python3 /home/debian/2.py /home/debian/netology/sysadm-homeworks/
+Отслеживаемая директория /home/debian/netology/sysadm-homeworks
+Изменился файл /home/debian/netology/sysadm-homeworks/test1.txt
+Изменился файл /home/debian/netology/sysadm-homeworks/test2.txt
+Изменился файл /home/debian/netology/sysadm-homeworks/test3.txt
+
 ```
 
 ## Обязательная задача 4
