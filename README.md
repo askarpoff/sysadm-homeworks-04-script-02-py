@@ -74,7 +74,7 @@ if len(sys.argv)<2:
     sys.exit(0);
 bash_command = ["cd "+sys.argv[1],"pwd"]
 directory_os = os.popen(' && '.join(bash_command)).read().replace("\n","")
-if "cd: can't cd to" in directory_os:
+if len(directory_os)==0:
     print(f'Нет такого каталога: {sys.argv[1]}');
     sys.exit(0);
 
@@ -102,11 +102,9 @@ debian@debian:~/netology/sysadm-homeworks$ /bin/python3 /home/debian/2.py /home/
 Отслеживаемая директория /home/debian/netology
 fatal: not a git repository (or any of the parent directories): .git
 Это не репозиторий: /home/debian/netology/
-debian@debian:~/netology/sysadm-homeworks$ /bin/python3 /home/debian/2.py ./netology/sysadm-homeworks
-/bin/sh: 1: cd: can't cd to ./netology/sysadm-homeworks
-Отслеживаемая директория
-/bin/sh: 1: cd: can't cd to ./netology/sysadm-homeworks
-Это не репозиторий: ./netology/sysadm-homeworks
+debian@debian:~/netology/sysadm-homeworks$ /bin/python3 /home/debian/2.py /home/debian/netology/sysadm
+/bin/sh: 1: cd: can't cd to /home/debian/netology/sysadm
+Нет такого каталога: /home/debian/netology/sysadm
 debian@debian:~/netology/sysadm-homeworks$ /bin/python3 /home/debian/2.py /home/debian/netology/sysadm-homeworks/
 Отслеживаемая директория /home/debian/netology/sysadm-homeworks
 Изменился файл /home/debian/netology/sysadm-homeworks/test1.txt
