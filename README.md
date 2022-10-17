@@ -97,10 +97,6 @@ for result in result_os.split('\n'):
 debian@debian:~/netology/sysadm-homeworks$ /bin/python3 /home/debian/2.py /home/debian/netology/
 Отслеживаемая директория /home/debian/netology
 fatal: not a git repository (or any of the parent directories): .git
-Это не репозиторий": /home/debian/netology/
-debian@debian:~/netology/sysadm-homeworks$ /bin/python3 /home/debian/2.py /home/debian/netology/
-Отслеживаемая директория /home/debian/netology
-fatal: not a git repository (or any of the parent directories): .git
 Это не репозиторий: /home/debian/netology/
 debian@debian:~/netology/sysadm-homeworks$ /bin/python3 /home/debian/2.py /home/debian/netology/sysadm
 /bin/sh: 1: cd: can't cd to /home/debian/netology/sysadm
