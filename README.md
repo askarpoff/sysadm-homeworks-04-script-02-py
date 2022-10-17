@@ -135,5 +135,5 @@ while(True):
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-![image](https://user-images.githubusercontent.com/108946489/196245771-d5107cb2-1889-41a3-a081-f69bb66b4fe8.png)
+![screenshot](https://user-images.githubusercontent.com/108946489/196245771-d5107cb2-1889-41a3-a081-f69bb66b4fe8.png)
 ```
